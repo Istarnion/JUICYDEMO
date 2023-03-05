@@ -56,18 +56,30 @@ function gfxInit(width, height) {
     window.addEventListener("resize", gfxResize);
 }
 
-gfx.drawLine = (fromX, fromY, toX, toY) => {
-    this.gfx.beginPath();
-    this.gfx.moveTo(fromX, fromY);
-    this.gfx.lineTo(toX, toY);
-    this.gfx.closePath();
-    this.gfx.stroke();
+// Clear the canvas
+gfx.clear = function(color) {
+    this.fillStyle = color;
+    this.clearRect(0, 0, gfx.width, gfx.height);
+    this.fillRect(0, 0, gfx.width, gfx.height);
 }
 
-// Clear the canvas
-gfx.clear = (color) => {
-    gfx.fillStyle = color;
-    gfx.clearRect(0, 0, gfx.width, gfx.height);
-    gfx.fillRect(0, 0, gfx.width, gfx.height);
+gfx.drawLine = function(fromX, fromY, toX, toY) {
+    this.beginPath();
+    this.moveTo(fromX, fromY);
+    this.lineTo(toX, toY);
+    this.closePath();
+    this.stroke();
+};
+
+gfx.circle = function(x, y, radius) {
+    this.beginPath();
+    this.arc(x, y, radius, 0, Math.TAU, false);
+    this.stroke();
+};
+
+gfx.fillCircle = function(x, y, radius) {
+    this.beginPath();
+    this.arc(x, y, radius, 0, Math.TAU, false);
+    this.fill();
 };
 
