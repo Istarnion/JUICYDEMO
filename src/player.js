@@ -17,6 +17,8 @@ function Player(x, y) {
 }
 
 Player.prototype.update = function(dt) {
+    this.direction = Math.atan2(mouseY - this.y, mouseX - this.x);
+
     this.x += this.dx * dt;
     this.y += this.dy * dt;
 }

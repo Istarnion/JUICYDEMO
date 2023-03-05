@@ -9,9 +9,6 @@
 function gameInit() {
     gfxInit(WIDTH, HEIGHT);
 
-    mouseX = WIDTH / 2;
-    mouseY = HEIGHT / 2;
-
     player = new Player(WIDTH / 2, HEIGHT / 2);
 
     accumulatedTime = 0;
