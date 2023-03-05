@@ -54,6 +54,10 @@ Enemy.prototype.update = function(dt) {
     this.y += this.dy * dt;
 }
 
+Enemy.prototype.hit = function() {
+    this.active = false;
+}
+
 Enemy.prototype.draw = function() {
     gfx.fillStyle = "white";
     gfx.fillCircle(this.x, this.y, ENEMY_RADIUS);

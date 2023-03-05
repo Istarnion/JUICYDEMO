@@ -54,6 +54,9 @@ Player.prototype.update = function(dt) {
     }
 }
 
+Player.prototype.hit = function() {
+}
+
 Player.prototype.draw = function(dt) {
     gfx.fillStyle = 'white';
     gfx.fillCircle(this.x, this.y, PLAYER_RADIUS);

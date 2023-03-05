@@ -53,6 +53,37 @@ function gameUpdateAndRender() {
             projectiles[i].update(DELTA_TIME_SECONDS);
         }
 
+        // Look for projectile collisions
+        for(var i=0; i<projectiles.length; ++i) {
+            const px = projectiles[i].x;
+            const py = projectiles[i].y;
+            const pr = projectiles[i].radius;
+
+            if(projectiles[i].mask === PROJECTILE_MASK_PLAYER) {
+                for(var j=0; j<enemies.length; ++j) {
+                    const dx = px - enemies[j].x;
+                    const dy = py - enemies[j].y;
+                    const r = ENEMY_RADIUS + pr;
+
+                    if(dx*dx + dy*dy < r*r) {
+                        enemies[j].hit();
+                        projectiles[i].active = false;
+                        break;
+                    }
+                }
+            }
+            else {
+                const dx = px - player.x;
+                const dy = py - player.y;
+                const r = PLAYER_RADIUS + pr;
+
+                if(dx*dx + dy*dy < r*r) {
+                    player.hit();
+                    projectiles[i].active = false;
+                }
+            }
+        }
+
         // Remove non-active projectiles
         for(var i=projectiles.length; i-->0;) {
             if(!projectiles[i].active) {
