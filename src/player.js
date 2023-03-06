@@ -27,7 +27,18 @@ function playerShoot(x, y, speed) {
 Player.prototype.update = function(dt) {
     this.direction = Math.atan2(mouseY - this.y, mouseX - this.x);
 
-    const speed = Math.sqrt(this.dx*this.dx + this.dy*this.dy);
+    this.dx = keys[KEY_RIGHT] - keys[KEY_LEFT];
+    this.dy = keys[KEY_DOWN] - keys[KEY_UP];
+
+    if(lenSqr(this.dx, this.dy) > 1) {
+        this.dx /= 1.41421;
+        this.dy /= 1.41421;
+    }
+
+    this.dx *= PLAYER_SPEED;
+    this.dy *= PLAYER_SPEED;
+
+    const speed = len(this.dx, this.dy);
 
     if(mouseDown && this.cooldown <= 0) {
         const orbCount = this.orbs.length / 2;
