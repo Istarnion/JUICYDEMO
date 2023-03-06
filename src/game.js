@@ -17,6 +17,7 @@ function resetGame() {
     player = new Player(WIDTH / 2, HEIGHT / 2);
     projectiles = [];
     enemies = [];
+    score = 0;
 
     accumulatedTime = 0;
     lastFrameTimestamp = performance.now();
@@ -110,8 +111,18 @@ function gameUpdateAndRender() {
         projectiles[i].draw();
     }
 
-    if(player.health <= 0 && (performance.now() - player.deathTimestamp) / 1000 > 2) {
-        resetGame();
+    gfx.fillStyle = "white";
+    gfx.fillText("x "+score, 10, HEIGHT - 15);
+
+    if(player.health <= 0) {
+        const deathTime = (performance.now() - player.deathTimestamp) / 1000;
+        const alpha = Math.max(0, deathTime - 1);
+        gfx.fillStyle = "rgba(0, 0, 0, " + alpha + ")";
+        gfx.fillRect(0, 0, WIDTH, HEIGHT);
+
+        if(deathTime > 3) {
+            resetGame();
+        }
     }
 
     window.requestAnimationFrame(gameUpdateAndRender);

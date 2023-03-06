@@ -106,9 +106,12 @@ Enemy.prototype.setState = function(newState) {
 }
 
 Enemy.prototype.hit = function() {
+    if(!this.active) return;
+
     this.health -= PLAYER_BULLET_DAMAGE;
     if(this.health <= 0) {
         this.active = false;
+        score++;
     }
 }
 
