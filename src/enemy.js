@@ -19,6 +19,7 @@ function Enemy(x, y, dstX, dstY) {
     this.dx = 0;
     this.dy = 0;
     this.direction = Math.atan2(dstY - y, dstX - x);
+    this.health = ENEMY_HEALTH;
 
     this.timeInState = 0;
     this.state = ENEMY_STATE_WALK;
@@ -105,7 +106,10 @@ Enemy.prototype.setState = function(newState) {
 }
 
 Enemy.prototype.hit = function() {
-    this.active = false;
+    this.health -= PLAYER_BULLET_DAMAGE;
+    if(this.health <= 0) {
+        this.active = false;
+    }
 }
 
 Enemy.prototype.draw = function() {

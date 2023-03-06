@@ -13,6 +13,8 @@ function Player(x, y) {
     this.dx = 0;
     this.dy = 0;
 
+    this.health = PLAYER_HEALTH;
+    this.deathTimestamp = 0;
     this.direction = 0;
     this.cooldown = 0;
 
@@ -66,6 +68,10 @@ Player.prototype.update = function(dt) {
 }
 
 Player.prototype.hit = function() {
+    this.health -= ENEMY_BULLET_DAMAGE;
+    if(this.health <= 0) {
+        this.deathTimestamp = performance.now();
+    }
 }
 
 Player.prototype.draw = function(dt) {

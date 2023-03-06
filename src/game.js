@@ -35,7 +35,11 @@ function gameUpdateAndRender() {
         accumulatedTime = DELTA_TIME_MILLIS;
     }
 
-    while(accumulatedTime >= DELTA_TIME_MILLIS) {
+    if(keys[KEY_RESET]) {
+        resetGame();
+    }
+
+    while(accumulatedTime >= DELTA_TIME_MILLIS && player.health > 0) {
         player.update(DELTA_TIME_SECONDS);
 
         for(var i=0; i<enemies.length; ++i) {
@@ -104,6 +108,10 @@ function gameUpdateAndRender() {
 
     for(var i=0; i<projectiles.length; ++i) {
         projectiles[i].draw();
+    }
+
+    if(player.health <= 0 && (performance.now() - player.deathTimestamp) / 1000 > 2) {
+        resetGame();
     }
 
     window.requestAnimationFrame(gameUpdateAndRender);
