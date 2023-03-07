@@ -62,7 +62,7 @@ Enemy.prototype.update = function(dt) {
             const angleToPlayer = Math.acos(dot(Math.cos(this.direction), Math.sin(this.direction),
                                                 toPlayerX, toPlayerY));
 
-            if(angleToPlayer <= ENEMY_FOV) {
+            if(angleToPlayer <= ENEMY_FOV && !lineIntersectsWalls(this.x, this.y, player.x, player.y)) {
                 this.setState(ENEMY_STATE_ATTACK);
                 this.direction = Math.atan2(toPlayerY, toPlayerX);
                 this.cooldown = ENEMY_SHOOT_COOLDOWN;
@@ -92,8 +92,9 @@ Enemy.prototype.update = function(dt) {
             break;
     }
 
-    this.x += this.dx * dt;
-    this.y += this.dy * dt;
+    const collision = move(this.x, this.y, ENEMY_RADIUS, this.dx, this.dy);
+    this.x = collision.x;
+    this.y = collision.y;
 
     this.timeInState += dt;
 }

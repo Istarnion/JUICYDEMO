@@ -17,6 +17,16 @@ function resetGame() {
     player = new Player(WIDTH / 2, HEIGHT / 2);
     projectiles = [];
     enemies = [];
+    walls = [ // x, y, width, height
+        [ 200, 150, 50, 100 ],
+        [ 200, 150, 100, 50 ],
+        [ 500, 150, 100, 50 ],
+        [ 550, 150, 50, 100 ],
+        [ 200, 400, 100, 50 ],
+        [ 200, 350, 50, 100 ],
+        [ 500, 400, 100, 50 ],
+        [ 550, 350, 50, 100 ]
+    ];
     score = 0;
 
     accumulatedTime = 0;
@@ -99,6 +109,12 @@ function gameUpdateAndRender() {
         enemySpawnUpdate(DELTA_TIME_SECONDS);
 
         accumulatedTime -= DELTA_TIME_MILLIS;
+    }
+
+    gfx.fillStyle = "white";
+    for(var i=0; i<walls.length; ++i) {
+        const w = walls[i];
+        gfx.fillRect(w[0], w[1], w[2], w[3]);
     }
 
     player.draw();

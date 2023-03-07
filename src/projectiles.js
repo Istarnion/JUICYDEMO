@@ -25,6 +25,9 @@ Projectile.prototype.update = function(dt) {
     this.x += this.dx * dt;
     this.y += this.dy * dt;
 
+    if(collidesAt(this.x, this.y, this.radius)) {
+        this.active = false;
+    }
     if(this.x < -this.radius || this.x > WIDTH + this.radius ||
        this.y < -this.radius || this.y > HEIGHT + this.radius) {
         this.active = false;

@@ -52,8 +52,9 @@ Player.prototype.update = function(dt) {
         this.cooldown = PLAYER_SHOOT_COOLDOWN;
     }
 
-    this.x += this.dx * dt;
-    this.y += this.dy * dt;
+    const collision = move(this.x, this.y, PLAYER_RADIUS, this.dx, this.dy);
+    this.x = collision.x;
+    this.y = collision.y;
 
     const forwardX = Math.cos(this.direction);
     const forwardY = Math.sin(this.direction);
