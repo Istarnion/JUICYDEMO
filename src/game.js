@@ -38,8 +38,9 @@ function gameUpdateAndRender() {
 
     const now = performance.now();
     const delta = now - lastFrameTimestamp;
+    lastFrameTimestamp = now;
     accumulatedTime += delta;
-    if(accumulatedTime > 3 * DELTA_TIME_MILLIS) {
+    if(delta > 1000) {
         // This probably means we were paused in some way.
         // In any case, to avoid hanging by trying to do too
         // many update steps, we truncate accumulatedTime.

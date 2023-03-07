@@ -33,10 +33,10 @@ function lineVsLine(x1, y1, x2, y2, x3, y3, x4, y4) {
 function lineIntersectsWalls(x1, y1, x2, y2) {
     for(var i=0; i<walls.length; ++i) {
         const w = walls[i];
-        if(lineVsLine(x1, y1, x2, y2, w[0], w[1], w[0]+w[2], w[1]) ||
-           lineVsLine(x1, y1, x2, y2, w[0], w[1], w[0], w[1]+w[3]) ||
-           lineVsLine(x1, y1, x2, y2, w[0], w[1]+w[3], w[0]+w[2], w[1]+w[3]) ||
-           lineVsLine(x1, y1, x2, y2, w[0]+w[2], w[1], w[0]+w[2], w[1]+w[3])) {
+        if(lineVsLine(x1, y1, x2, y2, w[0],      w[1],      w[0]+w[2], w[1]) ||
+           lineVsLine(x1, y1, x2, y2, w[0],      w[1],      w[0],      w[1]+w[3]) ||
+           lineVsLine(x1, y1, x2, y2, w[0],      w[1]+w[3], w[0]+w[2], w[1]+w[3]) ||
+           lineVsLine(x1, y1, x2, y2, w[0]+w[2], w[1],      w[0]+w[2], w[1]+w[3])) {
             return true;
         }
     }
@@ -57,16 +57,26 @@ function collidesAt(x, y, r) {
 }
 
 function move(x, y, r, dx, dy) {
-    const px = x + dx * DELTA_TIME_SECONDS;
-    const py = y + dy * DELTA_TIME_SECONDS;
+    var px = x + dx * DELTA_TIME_SECONDS;
+    var py = y + dy * DELTA_TIME_SECONDS;
 
-    for(var i=0; i<walls.length; ++i) {
-        const w = walls[i];
-        if(circleVsRect(px, py, r, w[0], w[1], w[2], w[3])) {
-            return { x: x, y: y, collide: true };
+    if(collidesAt(px, py, r)) {
+        px = x + dx * DELTA_TIME_SECONDS;
+        py = y;
+        if(!collidesAt(px, py, r)) {
+            return { x: px, y: py, collide: true };
         }
-    }
 
-    return { x: px, y: py, collide: false };
+        px = x;
+        py = y + dy * DELTA_TIME_SECONDS;
+        if(!collidesAt(px, py, r)) {
+            return { x: px, y: py, collide: true };
+        }
+
+        return { x: x, y: y, collide: true };
+    }
+    else {
+        return { x: px, y: py, collide: false };
+    }
 }
 

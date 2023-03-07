@@ -13,7 +13,7 @@ if(!Math.TAU) {
 const WIDTH = 800;
 const HEIGHT = 600;
 
-const DELTA_TIME_SECONDS = 1 / 60;
+const DELTA_TIME_SECONDS = 1 / 240;
 const DELTA_TIME_MILLIS = DELTA_TIME_SECONDS * 1000;
 
 const ENEMY_SPAWN_DELAY = 3;
