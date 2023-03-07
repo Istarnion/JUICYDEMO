@@ -29,3 +29,8 @@ function distSqr(x1, y1, x2, y2) {
 function dot(x1, y1, x2, y2) {
     return x1*x2 + y1*y2;
 }
+
+function randomRange(min, max) {
+    return min + Math.random() * (max - min);
+}
+

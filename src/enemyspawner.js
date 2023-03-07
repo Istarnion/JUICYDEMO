@@ -21,7 +21,10 @@ function enemySpawnUpdate(dt) {
         const configIndex = (Math.random() * configurations.length) | 0;
         const config = configurations[configIndex];
 
-        const enemy = new Enemy(config[0], config[1], config[2], config[3]);
+        const xOffset = randomRange(-20, 20);
+        const yOffset = randomRange(-20, 20);
+        const enemy = new Enemy(config[0]+xOffset, config[1]+yOffset,
+                                config[2]+xOffset, config[3]+yOffset);
         enemies.push(enemy);
 
         lastEnemySpawn = now;
