@@ -75,7 +75,8 @@ Enemy.prototype.update = function(dt) {
         case ENEMY_STATE_ATTACK:
             if(this.cooldown <= 0) {
                 if(this.shotsFired < ENEMY_CLIP_SIZE) {
-                    new Projectile(this.x, this.y, this.direction, ENEMY_BULLET_SPEED, 4, PROJECTILE_MASK_ENEMY);
+                    const shotDir = this.direction + randomRange(-BULLET_SPREAD, BULLET_SPREAD);
+                    new Projectile(this.x, this.y, shotDir, ENEMY_BULLET_SPEED, 4, PROJECTILE_MASK_ENEMY);
 
                     this.cooldown = ENEMY_SHOOT_COOLDOWN;
                     this.shotsFired++;

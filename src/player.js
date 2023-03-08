@@ -22,7 +22,7 @@ function Player(x, y) {
 }
 
 function playerShoot(x, y, speed) {
-    const direction = Math.atan2(mouseY - y, mouseX - x);
+    const direction = Math.atan2(mouseY - y, mouseX - x) + randomRange(-BULLET_SPREAD, BULLET_SPREAD);
     new Projectile(x, y, direction, speed + PLAYER_BULLET_SPEED, 4, PROJECTILE_MASK_PLAYER);
 }
 

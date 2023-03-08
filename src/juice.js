@@ -6,7 +6,13 @@
 /*                                                 */
 /***************************************************/
 
+var BULLET_SPREAD = 0;
+
 var PLAYER_COOL_GUN = false;
+var PLAYER_SHOOT_COOLDOWN = 0.6;
+
+var ENEMY_SPAWN_DELAY = 3;
+var ENEMY_SHOOT_COOLDOWN = 0.5;
 
 juicelevel = 0;
 const MAX_JUICE_LEVEL = 12;
@@ -34,6 +40,29 @@ function noJuice() {
 }
 
 function updateJuicyness() {
-    PLAYER_COOL_GUN = juicelevel > 0;
+    if(juicelevel >= 1) {
+        PLAYER_COOL_GUN = true;
+    }
+    else {
+        PLAYER_COOL_GUN = false;
+    }
+
+    if(juicelevel >= 2) {
+        PLAYER_SHOOT_COOLDOWN = 0.15;
+        ENEMY_SPAWN_DELAY = 2;
+        ENEMY_SHOOT_COOLDOWN = 0.15;
+    }
+    else {
+        ENEMY_SPAWN_DELAY = 5;
+        PLAYER_SHOOT_COOLDOWN = 0.7;
+        ENEMY_SHOOT_COOLDOWN = 0.6;
+    }
+
+    if(juicelevel >= 3) {
+        BULLET_SPREAD = 0.05;
+    }
+    else {
+        BULLET_SPREAD = 0;
+    }
 }
 
