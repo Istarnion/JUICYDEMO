@@ -29,13 +29,13 @@ function resetGame() {
     ];
     score = 0;
 
+    updateJuicyness();
+
     accumulatedTime = 0;
     lastFrameTimestamp = performance.now();
 }
 
 function gameUpdateAndRender() {
-    gfx.clear('black');
-
     const now = performance.now();
     const delta = now - lastFrameTimestamp;
     lastFrameTimestamp = now;
@@ -47,8 +47,20 @@ function gameUpdateAndRender() {
         accumulatedTime = DELTA_TIME_MILLIS;
     }
 
-    if(keys[KEY_RESET]) {
+    if(keyJustPressed(KEY_RESET)) {
         resetGame();
+    }
+    else if(keyJustPressed(KEY_LESS_JUICE)) {
+        lessJuice();
+    }
+    else if(keyJustPressed(KEY_MORE_JUICE)) {
+        moreJuice();
+    }
+    else if(keyJustPressed(KEY_NO_JUICE)) {
+        noJuice();
+    }
+    else if(keyJustPressed(KEY_ALL_JUICE)) {
+        maxJuice();
     }
 
     while(accumulatedTime >= DELTA_TIME_MILLIS && player.health > 0) {
@@ -112,6 +124,8 @@ function gameUpdateAndRender() {
         accumulatedTime -= DELTA_TIME_MILLIS;
     }
 
+    gfx.clear('black');
+
     gfx.fillStyle = "white";
     for(var i=0; i<walls.length; ++i) {
         const w = walls[i];
@@ -142,6 +156,7 @@ function gameUpdateAndRender() {
         }
     }
 
+    endInputFrame();
     window.requestAnimationFrame(gameUpdateAndRender);
 }
 

@@ -43,11 +43,15 @@ Player.prototype.update = function(dt) {
     const speed = len(this.dx, this.dy);
 
     if(mouseDown && this.cooldown <= 0) {
-        const orbCount = this.orbs.length / 2;
-        for(var i=0; i<orbCount; ++i) {
-            playerShoot(this.orbs[2*i], this.orbs[2*i+1], speed);
+        if(PLAYER_COOL_GUN) {
+            const orbCount = this.orbs.length / 2;
+            for(var i=0; i<orbCount; ++i) {
+                playerShoot(this.orbs[2*i], this.orbs[2*i+1], speed);
+            }
         }
-
+        else {
+            playerShoot(this.x, this.y, speed);
+        }
 
         this.cooldown = PLAYER_SHOOT_COOLDOWN;
     }
@@ -79,10 +83,12 @@ Player.prototype.draw = function(dt) {
     gfx.fillStyle = 'white';
     gfx.fillCircle(this.x, this.y, PLAYER_RADIUS);
 
-    const orbRadius = PLAYER_RADIUS * 0.3;
-    const orbCount = this.orbs.length / 2;
-    for(var i=0; i<orbCount; ++i) {
-        gfx.fillCircle(this.orbs[2*i], this.orbs[2*i+1], orbRadius);
+    if(PLAYER_COOL_GUN) {
+        const orbRadius = PLAYER_RADIUS * 0.3;
+        const orbCount = this.orbs.length / 2;
+        for(var i=0; i<orbCount; ++i) {
+            gfx.fillCircle(this.orbs[2*i], this.orbs[2*i+1], orbRadius);
+        }
     }
 
     const forwardX = Math.cos(this.direction);
