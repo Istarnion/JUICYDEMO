@@ -16,6 +16,8 @@ var PLAYER_SHOOT_COOLDOWN = 0.6;
 var ENEMY_SPAWN_DELAY = 3;
 var ENEMY_SHOOT_COOLDOWN = 0.5;
 
+var SFX = false;
+
 juicelevel = 0;
 const MAX_JUICE_LEVEL = 12;
 
@@ -67,13 +69,20 @@ function updateJuicyness() {
         BULLET_SPREAD = 0;
     }
 
-    if(juicelevel >= 3) {
+    if(juicelevel >= 4) {
         VISUALIZE_HP = true;
         VISUALIZE_AI = true;
     }
     else {
         VISUALIZE_HP = false;
         VISUALIZE_AI = false;
+    }
+
+    if(juicelevel >= 5) {
+        SFX = true;
+    }
+    else {
+        SFX = false;
     }
 }
 
