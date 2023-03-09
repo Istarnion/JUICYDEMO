@@ -11,6 +11,8 @@ var lastEnemySpawn = performance.now();
 function enemySpawnUpdate(dt) {
     const configurations = [
         [ 50, -50, 50, HEIGHT+50 ],
+        [ WIDTH/2, HEIGHT+50, WIDTH/2, -50 ],
+        [ WIDTH/2, -50, WIDTH/2, HEIGHT+50 ],
         [ WIDTH-50, HEIGHT+50, WIDTH-50, -50 ],
         [ WIDTH+50, 50, -50, 50 ],
         [ -50, HEIGHT-50, WIDTH+50, HEIGHT-50 ]
