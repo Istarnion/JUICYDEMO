@@ -53,6 +53,9 @@ Player.prototype.update = function(dt) {
             playerShoot(this.x, this.y, speed);
         }
 
+        // Call here to only play once no matter how many projectiles we fire
+        playSfx(PLAYER_SHOOT_SFX);
+
         this.cooldown = PLAYER_SHOOT_COOLDOWN;
     }
 

@@ -77,6 +77,7 @@ Enemy.prototype.update = function(dt) {
                 if(this.shotsFired < ENEMY_CLIP_SIZE) {
                     const shotDir = this.direction + randomRange(-BULLET_SPREAD, BULLET_SPREAD);
                     new Projectile(this.x, this.y, shotDir, ENEMY_BULLET_SPEED, 4, PROJECTILE_MASK_ENEMY);
+                    playSfx(ENEMY_SHOOT_SFX);
 
                     this.cooldown = ENEMY_SHOOT_COOLDOWN;
                     this.shotsFired++;
