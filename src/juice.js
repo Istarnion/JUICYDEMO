@@ -7,6 +7,8 @@
 /***************************************************/
 
 var BULLET_SPREAD = 0;
+var VISUALIZE_HP = false;
+var VISUALIZE_AI = false;
 
 var PLAYER_COOL_GUN = false;
 var PLAYER_SHOOT_COOLDOWN = 0.6;
@@ -63,6 +65,15 @@ function updateJuicyness() {
     }
     else {
         BULLET_SPREAD = 0;
+    }
+
+    if(juicelevel >= 3) {
+        VISUALIZE_HP = true;
+        VISUALIZE_AI = true;
+    }
+    else {
+        VISUALIZE_HP = false;
+        VISUALIZE_AI = false;
     }
 }
 

@@ -128,5 +128,27 @@ Enemy.prototype.draw = function() {
     gfx.fillCircle(this.x + forwardX * (PLAYER_RADIUS-eyeRadius),
                    this.y + forwardY * (PLAYER_RADIUS-eyeRadius),
                    eyeRadius);
+
+    if(VISUALIZE_AI) {
+        const alpha = this.direction - ENEMY_FOV/2;
+        const ax = this.x + Math.cos(alpha) * ENEMY_RADIUS * 3;
+        const ay = this.y + Math.sin(alpha) * ENEMY_RADIUS * 3;
+
+        const beta = this.direction + ENEMY_FOV/2;
+        const bx = this.x + Math.cos(beta) * ENEMY_RADIUS * 3;
+        const by = this.y + Math.sin(beta) * ENEMY_RADIUS * 3;
+
+        gfx.fillStyle = "rgba(255, 255, 255, 0.2)";
+        gfx.beginPath();
+        gfx.moveTo(this.x, this.y);
+        gfx.lineTo(ax, ay);
+        gfx.arc(this.x, this.y,
+                ENEMY_RADIUS * 4,
+                this.direction - ENEMY_FOV/2,
+                this.direction + ENEMY_FOV/2);
+        gfx.moveTo(this.x, this.y);
+        gfx.lineTo(bx, by);
+        gfx.fill();
+    }
 }
 

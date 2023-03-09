@@ -142,6 +142,18 @@ function gameUpdateAndRender() {
         projectiles[i].draw();
     }
 
+    if(VISUALIZE_HP) {
+        gfx.fillStyle = "black";
+        gfx.fillRect(WIDTH/2-75, HEIGHT-30, 150, 15);
+
+        gfx.strokeStyle = "white";
+        gfx.fillStyle = "white";
+        gfx.strokeRect(WIDTH/2-75, HEIGHT-30, 150, 15);
+
+        const hp = player.health / PLAYER_HEALTH;
+        gfx.fillRect(WIDTH/2-73, HEIGHT-28, 146 * hp, 11);
+    }
+
     gfx.fillStyle = "white";
     gfx.fillText("x "+score, 10, HEIGHT - 15);
 
