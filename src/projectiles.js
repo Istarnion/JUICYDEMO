@@ -26,6 +26,7 @@ Projectile.prototype.update = function(dt) {
     this.y += this.dy * dt;
 
     if(collidesAt(this.x, this.y, this.radius)) {
+        playSfx(PROJECTILE_HIT_WALL_SFX);
         this.active = false;
     }
     if(this.x < -this.radius || this.x > WIDTH + this.radius ||

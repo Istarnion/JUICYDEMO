@@ -78,6 +78,7 @@ Player.prototype.update = function(dt) {
 Player.prototype.hit = function() {
     this.health -= ENEMY_BULLET_DAMAGE;
     if(this.health <= 0) {
+        playSfx(PLAYER_DEATH_SFX);
         this.deathTimestamp = performance.now();
     }
 }

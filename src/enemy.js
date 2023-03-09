@@ -113,6 +113,7 @@ Enemy.prototype.hit = function() {
 
     this.health -= PLAYER_BULLET_DAMAGE;
     if(this.health <= 0) {
+        playSfx(ENEMY_DEATH_SFX);
         this.active = false;
         score++;
     }
