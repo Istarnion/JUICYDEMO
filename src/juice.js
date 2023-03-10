@@ -19,6 +19,9 @@ var ENEMY_SHOOT_COOLDOWN = 0.5;
 var SFX = false;
 var HIT_PARTICLES = false;
 
+var DEATH_ANIMS = false;
+var BULLET_ANIMS = false;
+
 juicelevel = 0;
 const MAX_JUICE_LEVEL = 12;
 
@@ -91,6 +94,15 @@ function updateJuicyness() {
     }
     else {
         HIT_PARTICLES = false;
+    }
+
+    if(juicelevel >= 7) {
+        DEATH_ANIMS = true;
+        BULLET_ANIMS = true;
+    }
+    else {
+        DEATH_ANIMS = false;
+        BULLET_ANIMS = false;
     }
 }
 

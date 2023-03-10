@@ -17,6 +17,7 @@ function Projectile(x, y, dir, speed, radius, mask) {
     this.radius = radius;
     this.mask = mask;
     this.active = true;
+    this.spawnTime = performance.now();
 
     projectiles.push(this);
 }
@@ -40,7 +41,21 @@ Projectile.prototype.update = function(dt) {
 }
 
 Projectile.prototype.draw = function() {
-    gfx.fillStyle = "white";
-    gfx.fillCircle(this.x, this.y, this.radius);
+    if(BULLET_ANIMS) {
+        gfx.fillStyle = "white";
+        if(performance.now() - this.spawnTime < MUZZLE_FLASH_TIME) {
+            gfx.fillCircle(this.x, this.y, this.radius * 2);
+        }
+        else {
+            const dir = Math.atan2(this.dy, this.dx);
+            gfx.beginPath();
+            gfx.ellipse(this.x, this.y, this.radius*2.5, this.radius, dir, 0, Math.TAU);
+            gfx.fill();
+        }
+    }
+    else {
+        gfx.fillStyle = "white";
+        gfx.fillCircle(this.x, this.y, this.radius);
+    }
 }
 
