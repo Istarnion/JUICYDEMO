@@ -120,6 +120,7 @@ function gameUpdateAndRender() {
         }
 
         enemySpawnUpdate(DELTA_TIME_SECONDS);
+        particlesUpdate(DELTA_TIME_SECONDS);
 
         accumulatedTime -= DELTA_TIME_MILLIS;
     }
@@ -131,6 +132,8 @@ function gameUpdateAndRender() {
         const w = walls[i];
         gfx.fillRect(w[0], w[1], w[2], w[3]);
     }
+
+    particlesDraw();
 
     player.draw();
 
