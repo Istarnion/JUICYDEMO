@@ -26,7 +26,10 @@ Projectile.prototype.update = function(dt) {
     this.y += this.dy * dt;
 
     if(collidesAt(this.x, this.y, this.radius)) {
-        particleBurst(3, this.x, this.y, 1, 0, Math.TAU, 100, "white");
+        if(HIT_PARTICLES) {
+            particleBurst(3, this.x, this.y, 1, 0, Math.TAU, 100, "white");
+        }
+
         playSfx(PROJECTILE_HIT_WALL_SFX);
         this.active = false;
     }

@@ -17,6 +17,7 @@ var ENEMY_SPAWN_DELAY = 3;
 var ENEMY_SHOOT_COOLDOWN = 0.5;
 
 var SFX = false;
+var HIT_PARTICLES = false;
 
 juicelevel = 0;
 const MAX_JUICE_LEVEL = 12;
@@ -83,6 +84,13 @@ function updateJuicyness() {
     }
     else {
         SFX = false;
+    }
+
+    if(juicelevel >= 6) {
+        HIT_PARTICLES = true;
+    }
+    else {
+        HIT_PARTICLES = false;
     }
 }
 

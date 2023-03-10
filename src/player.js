@@ -77,7 +77,10 @@ Player.prototype.update = function(dt) {
 
 Player.prototype.hit = function() {
     this.health -= ENEMY_BULLET_DAMAGE;
-    particleBurst(5, this.x, this.y, ENEMY_RADIUS, 0, Math.TAU, 100, "white");
+    if(HIT_PARTICLES) {
+        particleBurst(5, this.x, this.y, ENEMY_RADIUS, 0, Math.TAU, 100, "white");
+    }
+
     if(this.health <= 0) {
         playSfx(PLAYER_DEATH_SFX);
         this.deathTimestamp = performance.now();

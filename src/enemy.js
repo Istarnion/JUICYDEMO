@@ -112,7 +112,10 @@ Enemy.prototype.hit = function() {
     if(!this.active) return;
 
     this.health -= PLAYER_BULLET_DAMAGE;
-    particleBurst(5, this.x, this.y, ENEMY_RADIUS, 0, Math.TAU, 100, "white");
+    if(HIT_PARTICLES) {
+        particleBurst(5, this.x, this.y, ENEMY_RADIUS, 0, Math.TAU, 100, "white");
+    }
+
     if(this.health <= 0) {
         playSfx(ENEMY_DEATH_SFX);
         this.active = false;
