@@ -117,6 +117,10 @@ Enemy.prototype.hit = function() {
     }
 
     if(this.health <= 0) {
+        if(DEATH_ANIMS) {
+            effects.push(new DeathEffect(this.x, this.y));
+        }
+
         playSfx(ENEMY_DEATH_SFX);
         this.active = false;
         score++;

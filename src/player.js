@@ -82,6 +82,10 @@ Player.prototype.hit = function() {
     }
 
     if(this.health <= 0) {
+        if(DEATH_ANIMS) {
+            effects.push(new DeathEffect(this.x, this.y));
+        }
+
         playSfx(PLAYER_DEATH_SFX);
         this.deathTimestamp = performance.now();
     }

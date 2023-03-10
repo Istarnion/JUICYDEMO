@@ -27,6 +27,7 @@ function resetGame() {
         [ 500, 400, 100, 50 ],
         [ 550, 350, 50, 100 ]
     ];
+    effects = [];
     score = 0;
 
     updateJuicyness();
@@ -159,6 +160,13 @@ function gameUpdateAndRender() {
 
     gfx.fillStyle = "white";
     gfx.fillText("x "+score, 10, HEIGHT - 15);
+
+    for(var i=effects.length; i-->0;) {
+        effects[i].draw();
+        if(effects[i].done) {
+            effects.splice(i, 1);
+        }
+    }
 
     if(player.health <= 0) {
         const deathTime = (performance.now() - player.deathTimestamp) / 1000;
