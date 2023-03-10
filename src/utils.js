@@ -34,3 +34,12 @@ function randomRange(min, max) {
     return min + Math.random() * (max - min);
 }
 
+function randomInsideUnitCircle() {
+    const theta = randomRange(0, Math.TAU);
+    const r = Math.random();
+    return [
+        Math.cos(theta) * r,
+        Math.sin(theta) * r,
+    ];
+}
+
