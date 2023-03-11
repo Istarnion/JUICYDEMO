@@ -133,7 +133,7 @@ function gameUpdateAndRender() {
         accumulatedTime -= DELTA_TIME_MILLIS;
     }
 
-    gfx.clear('black');
+    gfx.clear(COLOR_BACKGROUND);
 
     if(SCREENSHAKE) {
         gfx.save();
@@ -142,7 +142,7 @@ function gameUpdateAndRender() {
         gfx.translate(offset[0] * hardness, offset[1] * hardness);
     }
 
-    gfx.fillStyle = "white";
+    gfx.fillStyle = COLOR_WALLS;
     for(var i=0; i<walls.length; ++i) {
         const w = walls[i];
         gfx.fillRect(w[0], w[1], w[2], w[3]);
@@ -161,18 +161,18 @@ function gameUpdateAndRender() {
     }
 
     if(VISUALIZE_HP) {
-        gfx.fillStyle = "black";
+        gfx.fillStyle = COLOR_HP_BACKGROUND;
         gfx.fillRect(WIDTH/2-75, HEIGHT-30, 150, 15);
 
-        gfx.strokeStyle = "white";
-        gfx.fillStyle = "white";
+        gfx.strokeStyle = COLOR_HP_BORDER;
         gfx.strokeRect(WIDTH/2-75, HEIGHT-30, 150, 15);
 
+        gfx.fillStyle = COLOR_HP_FILL;
         const hp = player.health / PLAYER_HEALTH;
         gfx.fillRect(WIDTH/2-73, HEIGHT-28, 146 * hp, 11);
     }
 
-    gfx.fillStyle = "white";
+    gfx.fillStyle = COLOR_SCORE;
     gfx.fillText("x "+score, 10, HEIGHT - 15);
 
     for(var i=effects.length; i-->0;) {

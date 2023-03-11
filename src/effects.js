@@ -17,7 +17,7 @@ DeathEffect.prototype.draw = function() {
     const secondsAlive = (performance.now() - this.spawnTime) / 1000;
     const radius = WIDTH * (secondsAlive / DEATH_EFFECT_DURATION);
 
-    gfx.strokeStyle = "white";
+    gfx.strokeStyle = COLOR_DEATH_EFFECT;
     gfx.circle(this.x, this.y, radius);
 
     if(secondsAlive >= DEATH_EFFECT_DURATION) {

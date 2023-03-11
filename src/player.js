@@ -79,7 +79,7 @@ Player.prototype.update = function(dt) {
 Player.prototype.hit = function() {
     this.health -= ENEMY_BULLET_DAMAGE;
     if(HIT_PARTICLES) {
-        particleBurst(5, this.x, this.y, ENEMY_RADIUS, 0, Math.TAU, 100, "white");
+        particleBurst(5, this.x, this.y, ENEMY_RADIUS, 0, Math.TAU, 100, COLOR_PLAYER_BLOOD);
     }
 
     trauma += 0.5;
@@ -95,10 +95,11 @@ Player.prototype.hit = function() {
 }
 
 Player.prototype.draw = function(dt) {
-    gfx.fillStyle = 'white';
+    gfx.fillStyle = COLOR_PLAYER;
     gfx.fillCircle(this.x, this.y, PLAYER_RADIUS);
 
     if(PLAYER_COOL_GUN) {
+        gfx.fillStyle = COLOR_PLAYER_ORB;
         const orbRadius = PLAYER_RADIUS * 0.3;
         const orbCount = this.orbs.length / 2;
         for(var i=0; i<orbCount; ++i) {
@@ -109,7 +110,7 @@ Player.prototype.draw = function(dt) {
     const forwardX = Math.cos(this.direction);
     const forwardY = Math.sin(this.direction);
     const eyeRadius = PLAYER_RADIUS * 0.25;
-    gfx.fillStyle = 'black';
+    gfx.fillStyle = COLOR_PLAYER_EYE;
     gfx.fillCircle(this.x + forwardX * (PLAYER_RADIUS-eyeRadius),
                    this.y + forwardY * (PLAYER_RADIUS-eyeRadius),
                    eyeRadius);

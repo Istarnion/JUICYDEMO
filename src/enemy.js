@@ -113,10 +113,10 @@ Enemy.prototype.hit = function() {
 
     this.health -= PLAYER_BULLET_DAMAGE;
     if(HIT_PARTICLES) {
-        particleBurst(5, this.x, this.y, ENEMY_RADIUS, 0, Math.TAU, 100, "white");
+        particleBurst(5, this.x, this.y, ENEMY_RADIUS, 0, Math.TAU, 100, COLOR_ENEMY_BLOOD);
     }
 
-        trauma += 0.1;
+    trauma += 0.2;
 
     if(this.health <= 0) {
         if(DEATH_ANIMS) {
@@ -130,17 +130,6 @@ Enemy.prototype.hit = function() {
 }
 
 Enemy.prototype.draw = function() {
-    gfx.fillStyle = "white";
-    gfx.fillCircle(this.x, this.y, ENEMY_RADIUS);
-
-    const forwardX = Math.cos(this.direction);
-    const forwardY = Math.sin(this.direction);
-    const eyeRadius = ENEMY_RADIUS * 0.25;
-    gfx.fillStyle = 'black';
-    gfx.fillCircle(this.x + forwardX * (PLAYER_RADIUS-eyeRadius),
-                   this.y + forwardY * (PLAYER_RADIUS-eyeRadius),
-                   eyeRadius);
-
     if(VISUALIZE_AI) {
         const alpha = this.direction - ENEMY_FOV/2;
         const ax = this.x + Math.cos(alpha) * ENEMY_RADIUS * 3;
@@ -150,7 +139,7 @@ Enemy.prototype.draw = function() {
         const bx = this.x + Math.cos(beta) * ENEMY_RADIUS * 3;
         const by = this.y + Math.sin(beta) * ENEMY_RADIUS * 3;
 
-        gfx.fillStyle = "rgba(255, 255, 255, 0.2)";
+        gfx.fillStyle = COLOR_ENEMY_VIEWCONE;
         gfx.beginPath();
         gfx.moveTo(this.x, this.y);
         gfx.lineTo(ax, ay);
@@ -162,5 +151,16 @@ Enemy.prototype.draw = function() {
         gfx.lineTo(bx, by);
         gfx.fill();
     }
+
+    gfx.fillStyle = COLOR_ENEMY;
+    gfx.fillCircle(this.x, this.y, ENEMY_RADIUS);
+
+    const forwardX = Math.cos(this.direction);
+    const forwardY = Math.sin(this.direction);
+    const eyeRadius = ENEMY_RADIUS * 0.25;
+    gfx.fillStyle = COLOR_ENEMY_EYE;
+    gfx.fillCircle(this.x + forwardX * (PLAYER_RADIUS-eyeRadius),
+                   this.y + forwardY * (PLAYER_RADIUS-eyeRadius),
+                   eyeRadius);
 }
 

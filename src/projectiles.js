@@ -28,7 +28,7 @@ Projectile.prototype.update = function(dt) {
 
     if(collidesAt(this.x, this.y, this.radius)) {
         if(HIT_PARTICLES) {
-            particleBurst(3, this.x, this.y, 1, 0, Math.TAU, 100, "white");
+            particleBurst(3, this.x, this.y, 1, 0, Math.TAU, 100, COLOR_PROJECTILE_WALL_SPARKS);
         }
 
         trauma += 0.05;
@@ -43,11 +43,12 @@ Projectile.prototype.update = function(dt) {
 
 Projectile.prototype.draw = function() {
     if(BULLET_ANIMS) {
-        gfx.fillStyle = "white";
         if(performance.now() - this.spawnTime < MUZZLE_FLASH_TIME) {
+            gfx.fillStyle = COLOR_PROJECTILE_FLASH;
             gfx.fillCircle(this.x, this.y, this.radius * 2);
         }
         else {
+            gfx.fillStyle = COLOR_PROJECTILE;
             const dir = Math.atan2(this.dy, this.dx);
             gfx.beginPath();
             gfx.ellipse(this.x, this.y, this.radius*2.5, this.radius, dir, 0, Math.TAU);
@@ -55,7 +56,7 @@ Projectile.prototype.draw = function() {
         }
     }
     else {
-        gfx.fillStyle = "white";
+        gfx.fillStyle = COLOR_PROJECTILE;
         gfx.fillCircle(this.x, this.y, this.radius);
     }
 }

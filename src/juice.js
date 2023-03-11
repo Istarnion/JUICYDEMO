@@ -24,6 +24,25 @@ var BULLET_ANIMS = false;
 
 var SCREENSHAKE = false;
 
+var COLOR_BACKGROUND;
+var COLOR_WALLS;
+var COLOR_HP_BACKGROUND;
+var COLOR_HP_BORDER;
+var COLOR_HP_FILL;
+var COLOR_SCORE;
+var COLOR_PROJECTILE;
+var COLOR_PROJECTILE_FLASH;
+var COLOR_PROJECTILE_WALL_SPARKS;
+var COLOR_DEATH_EFFECT;
+var COLOR_PLAYER;
+var COLOR_PLAYER_EYE;
+var COLOR_PLAYER_ORB;
+var COLOR_PLAYER_BLOOD;
+var COLOR_ENEMY;
+var COLOR_ENEMY_EYE;
+var COLOR_ENEMY_VIEWCONE;
+var COLOR_ENEMY_BLOOD;
+
 juicelevel = 0;
 const MAX_JUICE_LEVEL = 12;
 
@@ -113,5 +132,47 @@ function updateJuicyness() {
     else {
         SCREENSHAKE = false;
     }
+
+    if(juicelevel >= 8) {
+        COLOR_BACKGROUND = "#433C43";
+        COLOR_WALLS = "#5F4942";
+        COLOR_HP_BACKGROUND = "#615A73";
+        COLOR_HP_BORDER = "#FFFFFF";
+        COLOR_HP_FILL = "#E4534A";
+        COLOR_SCORE = "#FFFFFF";
+        COLOR_PROJECTILE = "#F3D99B";
+        COLOR_PROJECTILE_FLASH = "#FFFFFF";
+        COLOR_PROJECTILE_WALL_SPARKS = "#FFFFFF";
+        COLOR_DEATH_EFFECT = "#615A73";
+        COLOR_PLAYER = "#81AA8E";
+        COLOR_PLAYER_EYE = "#433C43";
+        COLOR_PLAYER_ORB = "#628168";
+        COLOR_PLAYER_BLOOD = "#E4534A";
+        COLOR_ENEMY = "#CFAC89";
+        COLOR_ENEMY_EYE = "#D98C6D";
+        COLOR_ENEMY_VIEWCONE = "rgba(255, 255, 255, 0.2)";
+        COLOR_ENEMY_BLOOD = "#D98C6D";
+    }
+    else {
+        COLOR_BACKGROUND = "black";
+        COLOR_WALLS = "white";
+        COLOR_HP_BACKGROUND = "black";
+        COLOR_HP_BORDER = "white";
+        COLOR_HP_FILL = "white";
+        COLOR_SCORE = "white";
+        COLOR_PROJECTILE = "white";
+        COLOR_PROJECTILE_FLASH = "white";
+        COLOR_PROJECTILE_WALL_SPARKS = "white";
+        COLOR_DEATH_EFFECT = "white";
+        COLOR_PLAYER = "white";
+        COLOR_PLAYER_EYE = "black";
+        COLOR_PLAYER_ORB = "white";
+        COLOR_PLAYER_BLOOD = "white";
+        COLOR_ENEMY = "white";
+        COLOR_ENEMY_EYE = "black";
+        COLOR_ENEMY_VIEWCONE = "rgba(255, 255, 255, 0.2)";
+        COLOR_ENEMY_BLOOD = "white";
+    }
+
 }
 
