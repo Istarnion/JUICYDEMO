@@ -55,6 +55,7 @@ Player.prototype.update = function(dt) {
 
         // Call here to only play once no matter how many projectiles we fire
         playSfx(PLAYER_SHOOT_SFX);
+        trauma += 0.075;
 
         this.cooldown = PLAYER_SHOOT_COOLDOWN;
     }
@@ -80,6 +81,8 @@ Player.prototype.hit = function() {
     if(HIT_PARTICLES) {
         particleBurst(5, this.x, this.y, ENEMY_RADIUS, 0, Math.TAU, 100, "white");
     }
+
+    trauma += 0.5;
 
     if(this.health <= 0) {
         if(DEATH_ANIMS) {

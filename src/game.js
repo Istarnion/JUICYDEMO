@@ -27,7 +27,9 @@ function resetGame() {
         [ 500, 400, 100, 50 ],
         [ 550, 350, 50, 100 ]
     ];
+
     effects = [];
+    trauma = 0;
     score = 0;
 
     updateJuicyness();
@@ -65,6 +67,11 @@ function gameUpdateAndRender() {
     }
 
     while(accumulatedTime >= DELTA_TIME_MILLIS && player.health > 0) {
+        trauma -= TRAUMA_RESTORE_SPEED * DELTA_TIME_SECONDS;
+        if(trauma < 0) {
+            trauma = 0;
+        }
+
         player.update(DELTA_TIME_SECONDS);
 
         for(var i=0; i<enemies.length; ++i) {
@@ -128,6 +135,13 @@ function gameUpdateAndRender() {
 
     gfx.clear('black');
 
+    if(SCREENSHAKE) {
+        gfx.save();
+        const offset = randomInsideUnitCircle();
+        const hardness = trauma * SCREENSHAKE_HARDNESS;
+        gfx.translate(offset[0] * hardness, offset[1] * hardness);
+    }
+
     gfx.fillStyle = "white";
     for(var i=0; i<walls.length; ++i) {
         const w = walls[i];
@@ -177,6 +191,10 @@ function gameUpdateAndRender() {
         if(deathTime > 3) {
             resetGame();
         }
+    }
+
+    if(SCREENSHAKE) {
+        gfx.restore();
     }
 
     endInputFrame();

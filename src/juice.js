@@ -22,6 +22,8 @@ var HIT_PARTICLES = false;
 var DEATH_ANIMS = false;
 var BULLET_ANIMS = false;
 
+var SCREENSHAKE = false;
+
 juicelevel = 0;
 const MAX_JUICE_LEVEL = 12;
 
@@ -103,6 +105,13 @@ function updateJuicyness() {
     else {
         DEATH_ANIMS = false;
         BULLET_ANIMS = false;
+    }
+
+    if(juicelevel >= 8) {
+        SCREENSHAKE = true;
+    }
+    else {
+        SCREENSHAKE = false;
     }
 }
 

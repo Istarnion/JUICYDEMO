@@ -31,6 +31,7 @@ Projectile.prototype.update = function(dt) {
             particleBurst(3, this.x, this.y, 1, 0, Math.TAU, 100, "white");
         }
 
+        trauma += 0.05;
         playSfx(PROJECTILE_HIT_WALL_SFX);
         this.active = false;
     }

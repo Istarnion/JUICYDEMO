@@ -116,6 +116,8 @@ Enemy.prototype.hit = function() {
         particleBurst(5, this.x, this.y, ENEMY_RADIUS, 0, Math.TAU, 100, "white");
     }
 
+        trauma += 0.1;
+
     if(this.health <= 0) {
         if(DEATH_ANIMS) {
             effects.push(new DeathEffect(this.x, this.y));
