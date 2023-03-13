@@ -48,7 +48,12 @@ Projectile.prototype.draw = function() {
             gfx.fillCircle(this.x, this.y, this.radius * 2);
         }
         else {
-            gfx.fillStyle = COLOR_PROJECTILE;
+            if(this.mask === PROJECTILE_MASK_PLAYER) {
+                gfx.fillStyle = COLOR_PROJECTILE_PLAYER;
+            }
+            else {
+                gfx.fillStyle = COLOR_PROJECTILE_ENEMY;
+            }
             const dir = Math.atan2(this.dy, this.dx);
             gfx.beginPath();
             gfx.ellipse(this.x, this.y, this.radius*2.5, this.radius, dir, 0, Math.TAU);
@@ -56,7 +61,12 @@ Projectile.prototype.draw = function() {
         }
     }
     else {
-        gfx.fillStyle = COLOR_PROJECTILE;
+        if(this.mask === PROJECTILE_MASK_PLAYER) {
+            gfx.fillStyle = COLOR_PROJECTILE_PLAYER;
+        }
+        else {
+            gfx.fillStyle = COLOR_PROJECTILE_ENEMY;
+        }
         gfx.fillCircle(this.x, this.y, this.radius);
     }
 }

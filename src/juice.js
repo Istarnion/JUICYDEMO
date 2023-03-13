@@ -30,7 +30,8 @@ var COLOR_HP_BACKGROUND;
 var COLOR_HP_BORDER;
 var COLOR_HP_FILL;
 var COLOR_SCORE;
-var COLOR_PROJECTILE;
+var COLOR_PROJECTILE_PLAYER;
+var COLOR_PROJECTILE_ENEMY;
 var COLOR_PROJECTILE_FLASH;
 var COLOR_PROJECTILE_WALL_SPARKS;
 var COLOR_DEATH_EFFECT;
@@ -129,24 +130,25 @@ function updateJuicyness() {
     }
 
     if(juicelevel >= 9) {
-        COLOR_BACKGROUND = "#433C43";
-        COLOR_WALLS = "#5F4942";
-        COLOR_HP_BACKGROUND = "#615A73";
-        COLOR_HP_BORDER = "#FFFFFF";
-        COLOR_HP_FILL = "#E4534A";
-        COLOR_SCORE = "#FFFFFF";
-        COLOR_PROJECTILE = "#F3D99B";
+        COLOR_BACKGROUND = "#1a2331";
+        COLOR_WALLS = "#5f707f";
+        COLOR_HP_BACKGROUND = "#000000";
+        COLOR_HP_BORDER = "#86fbee";
+        COLOR_HP_FILL = "#e94f49";
+        COLOR_SCORE = "#86fbee";
+        COLOR_PROJECTILE_PLAYER = "#e0fefc";
+        COLOR_PROJECTILE_ENEMY = "#fdf4b0";
         COLOR_PROJECTILE_FLASH = "#FFFFFF";
         COLOR_PROJECTILE_WALL_SPARKS = "#FFFFFF";
-        COLOR_DEATH_EFFECT = "#615A73";
-        COLOR_PLAYER = "#81AA8E";
-        COLOR_PLAYER_EYE = "#433C43";
-        COLOR_PLAYER_ORB = "#628168";
-        COLOR_PLAYER_BLOOD = "#E4534A";
-        COLOR_ENEMY = "#CFAC89";
-        COLOR_ENEMY_EYE = "#D98C6D";
-        COLOR_ENEMY_VIEWCONE = "rgba(255, 255, 255, 0.2)";
-        COLOR_ENEMY_BLOOD = "#D98C6D";
+        COLOR_DEATH_EFFECT = "#FFFFFF";
+        COLOR_PLAYER = "#86fbee";
+        COLOR_PLAYER_EYE = "#000000";
+        COLOR_PLAYER_ORB = "#4da8b0";
+        COLOR_PLAYER_BLOOD = "#e94f49";
+        COLOR_ENEMY = "#e73e46";
+        COLOR_ENEMY_EYE = "#000000";
+        COLOR_ENEMY_VIEWCONE = "rgba(232, 62, 70, 0.2)";
+        COLOR_ENEMY_BLOOD = "#e73e46";
     }
     else {
         COLOR_BACKGROUND = "black";
@@ -155,7 +157,8 @@ function updateJuicyness() {
         COLOR_HP_BORDER = "white";
         COLOR_HP_FILL = "white";
         COLOR_SCORE = "white";
-        COLOR_PROJECTILE = "white";
+        COLOR_PROJECTILE_PLAYER = "white";
+        COLOR_PROJECTILE_ENEMY = "white";
         COLOR_PROJECTILE_FLASH = "white";
         COLOR_PROJECTILE_WALL_SPARKS = "white";
         COLOR_DEATH_EFFECT = "white";
