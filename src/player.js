@@ -95,6 +95,7 @@ Player.prototype.hit = function() {
 
     trauma += 0.5;
     this.lastHitTime = performance.now();
+    healthAnim = 1;
 
     if(this.health <= 0) {
         if(DEATH_ANIMS) {

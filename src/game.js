@@ -39,6 +39,8 @@ function resetGame() {
     effects = [];
     trauma = 0;
     score = 0;
+    scoreAnim = 1;
+    healthAnim = 0;
 
     if(MUSIC) {
         bgm.volume(MUSIC_VOLUME);
@@ -50,6 +52,7 @@ function resetGame() {
     accumulatedTime = 0;
     lastFrameTimestamp = performance.now();
 }
+
 
 function gameUpdateAndRender() {
     const now = performance.now();
@@ -188,18 +191,43 @@ function gameUpdateAndRender() {
     }
 
     if(VISUALIZE_HP) {
+
         gfx.fillStyle = COLOR_HP_BACKGROUND;
         gfx.fillRect(WIDTH/2-75, HEIGHT-30, 150, 15);
 
         gfx.strokeStyle = COLOR_HP_BORDER;
         gfx.strokeRect(WIDTH/2-75, HEIGHT-30, 150, 15);
 
-        gfx.fillStyle = COLOR_HP_FILL;
+        if(TWEENING) {
+            const color = colorLerpToWhite(COLOR_HP_FILL, healthAnim);
+            gfx.fillStyle = color;
+        }
+        else {
+            gfx.fillStyle = COLOR_HP_FILL;
+        }
+
         const hp = player.health / PLAYER_HEALTH;
         gfx.fillRect(WIDTH/2-73, HEIGHT-28, 146 * hp, 11);
+
+        healthAnim -= (delta / 1000) * 2;
+        if(healthAnim < 0) healthAnim = 0;
     }
 
-    gfx.fillStyle = COLOR_SCORE;
+    if(TWEENING) {
+        const color = colorLerpToWhite(COLOR_SCORE, 1-scoreAnim);
+        gfx.fillStyle = color;
+
+        const size = (lerp(72, 12, tween(scoreAnim))) | 0;
+        gfx.font = size + "px monospace";
+
+        scoreAnim += (delta / 1000) * 2;
+        if(scoreAnim > 1) scoreAnim = 1;
+    }
+    else {
+        gfx.fillStyle = COLOR_SCORE;
+        gfx.font = "12px monospace";
+    }
+
     gfx.fillText("x "+score, 10, HEIGHT - 15);
 
     for(var i=effects.length; i-->0;) {
@@ -226,6 +254,11 @@ function gameUpdateAndRender() {
 
     endInputFrame();
     window.requestAnimationFrame(gameUpdateAndRender);
+}
+
+function scorePoint() {
+    score++;
+    scoreAnim = 0;
 }
 
 gameInit();

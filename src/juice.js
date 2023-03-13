@@ -47,6 +47,8 @@ var COLOR_ENEMY_VIEWCONE;
 var COLOR_ENEMY_BLOOD;
 var SHADOWS = false;
 
+var TWEENING = false;
+
 juicelevel = 0;
 const MAX_JUICE_LEVEL = 12;
 
@@ -194,6 +196,13 @@ function updateJuicyness() {
     }
     else {
         EXTRA_PARTICLES = false;
+    }
+
+    if(juicelevel >= 11) {
+        TWEENING = true;
+    }
+    else {
+        TWEENING = false;
     }
 }
 

@@ -43,3 +43,23 @@ function randomInsideUnitCircle() {
     ];
 }
 
+
+function lerp(a, b, t) {
+    return a*(1-t) + b*t;
+}
+
+/* expects col in the format "#RRGGBB" */
+function colorLerpToWhite(col, t) {
+    const invT = 1 - t;
+    const r = (parseInt(col.substring(1, 3), 16) * invT + 255*t) & 0xFF;
+    const g = (parseInt(col.substring(3, 5), 16) * invT + 255*t) & 0xFF;
+    const b = (parseInt(col.substring(5, 7), 16) * invT + 255*t) & 0xFF;
+
+    return "#" + r.toString(16) + g.toString(16) + b.toString(16);
+}
+
+/* Nice simple s-curve */
+function tween(t) {
+    return 3*t*t - 2*t*t*t;
+}
+
