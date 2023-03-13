@@ -80,21 +80,16 @@ function updateJuicyness() {
         PLAYER_SHOOT_COOLDOWN = 0.15;
         ENEMY_SPAWN_DELAY = 2;
         ENEMY_SHOOT_COOLDOWN = 0.15;
+        BULLET_SPREAD = 0.05;
     }
     else {
         ENEMY_SPAWN_DELAY = 5;
         PLAYER_SHOOT_COOLDOWN = 0.7;
         ENEMY_SHOOT_COOLDOWN = 0.6;
-    }
-
-    if(juicelevel >= 3) {
-        BULLET_SPREAD = 0.05;
-    }
-    else {
         BULLET_SPREAD = 0;
     }
 
-    if(juicelevel >= 4) {
+    if(juicelevel >= 3) {
         VISUALIZE_HP = true;
         VISUALIZE_AI = true;
     }
@@ -103,21 +98,21 @@ function updateJuicyness() {
         VISUALIZE_AI = false;
     }
 
-    if(juicelevel >= 5) {
+    if(juicelevel >= 4) {
         SFX = true;
     }
     else {
         SFX = false;
     }
 
-    if(juicelevel >= 6) {
+    if(juicelevel >= 5) {
         HIT_PARTICLES = true;
     }
     else {
         HIT_PARTICLES = false;
     }
 
-    if(juicelevel >= 7) {
+    if(juicelevel >= 6) {
         DEATH_ANIMS = true;
         BULLET_ANIMS = true;
     }
@@ -126,14 +121,14 @@ function updateJuicyness() {
         BULLET_ANIMS = false;
     }
 
-    if(juicelevel >= 8) {
+    if(juicelevel >= 7) {
         SCREENSHAKE = true;
     }
     else {
         SCREENSHAKE = false;
     }
 
-    if(juicelevel >= 8) {
+    if(juicelevel >= 9) {
         COLOR_BACKGROUND = "#433C43";
         COLOR_WALLS = "#5F4942";
         COLOR_HP_BACKGROUND = "#615A73";
@@ -173,6 +168,5 @@ function updateJuicyness() {
         COLOR_ENEMY_VIEWCONE = "rgba(255, 255, 255, 0.2)";
         COLOR_ENEMY_BLOOD = "white";
     }
-
 }
 
