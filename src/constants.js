@@ -24,6 +24,9 @@ const SCREENSHAKE_HARDNESS = 10;
 const SHADOW = 2;
 const MUSIC_VOLUME = 0.1;
 
+const PROJECTILE_TRAIL_COOLDOWN = 50; // milliseconds
+const WALK_TRAIL_COOLDOWN = 250;
+
 const PLAYER_HEALTH = 100;
 const PLAYER_RADIUS = 12;
 const PLAYER_SPEED = 200;

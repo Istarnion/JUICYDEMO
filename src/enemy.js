@@ -28,6 +28,7 @@ function Enemy(x, y, dstX, dstY) {
     this.cooldown = 0;
     this.shotsFired = 0;
     this.lastHitTime = 0;
+    this.lastTrailParticle = 0;
 
     this.active = true;
 }
@@ -102,6 +103,16 @@ Enemy.prototype.update = function(dt) {
     this.y = collision.y;
 
     this.timeInState += dt;
+
+    if(EXTRA_PARTICLES) {
+        const now = performance.now();
+        const speed = lenSqr(this.dx, this.dy);
+        if(speed > 0 && now - this.lastTrailParticle >= WALK_TRAIL_COOLDOWN) {
+            particleBurst(1, this.x, this.y, ENEMY_RADIUS, -this.direction, -this.direction, 10, COLOR_ENEMY);
+            this.lastTrailParticle = now +
+                randomRange(WALK_TRAIL_COOLDOWN/-2, WALK_TRAIL_COOLDOWN/2);
+        }
+    }
 }
 
 Enemy.prototype.setState = function(newState) {
@@ -125,6 +136,10 @@ Enemy.prototype.hit = function() {
     if(this.health <= 0) {
         if(DEATH_ANIMS) {
             effects.push(new DeathEffect(this.x, this.y));
+        }
+
+        if(EXTRA_PARTICLES) {
+            particleBurst(80, this.x, this.y, ENEMY_RADIUS, 0, Math.TAU, 100, COLOR_ENEMY_BLOOD);
         }
 
         playSfx(ENEMY_DEATH_SFX);

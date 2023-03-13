@@ -18,6 +18,7 @@ function Player(x, y) {
     this.direction = 0;
     this.cooldown = 0;
     this.lastHitTime = 0;
+    this.lastTrailParticle = 0;
 
     this.orbs = [ 0, 0, 0, 0 ];
 }
@@ -75,6 +76,15 @@ Player.prototype.update = function(dt) {
     if(this.cooldown > 0) {
         this.cooldown -= dt;
     }
+
+    if(EXTRA_PARTICLES) {
+        const now = performance.now();
+        if(speed > 0 && now - this.lastTrailParticle >= WALK_TRAIL_COOLDOWN) {
+            particleBurst(1, this.x, this.y, PLAYER_RADIUS, -this.direction, -this.direction, 10, COLOR_PLAYER);
+            this.lastTrailParticle = now +
+                randomRange(WALK_TRAIL_COOLDOWN/-2, WALK_TRAIL_COOLDOWN/2);
+        }
+    }
 }
 
 Player.prototype.hit = function() {
@@ -89,6 +99,10 @@ Player.prototype.hit = function() {
     if(this.health <= 0) {
         if(DEATH_ANIMS) {
             effects.push(new DeathEffect(this.x, this.y));
+        }
+
+        if(EXTRA_PARTICLES) {
+            particleBurst(100, this.x, this.y, PLAYER_RADIUS, 0, Math.TAU, 100, COLOR_PLAYER_BLOOD);
         }
 
         playSfx(PLAYER_DEATH_SFX);

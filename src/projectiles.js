@@ -18,6 +18,7 @@ function Projectile(x, y, dir, speed, radius, mask) {
     this.mask = mask;
     this.active = true;
     this.spawnTime = performance.now();
+    this.lastTrailParticle = 0;
 
     projectiles.push(this);
 }
@@ -25,6 +26,7 @@ function Projectile(x, y, dir, speed, radius, mask) {
 Projectile.prototype.update = function(dt) {
     this.x += this.dx * dt;
     this.y += this.dy * dt;
+
 
     if(collidesAt(this.x, this.y, this.radius)) {
         if(HIT_PARTICLES) {
@@ -35,6 +37,7 @@ Projectile.prototype.update = function(dt) {
         playSfx(PROJECTILE_HIT_WALL_SFX);
         this.active = false;
     }
+
     if(this.x < -this.radius || this.x > WIDTH + this.radius ||
        this.y < -this.radius || this.y > HEIGHT + this.radius) {
         this.active = false;
@@ -42,18 +45,22 @@ Projectile.prototype.update = function(dt) {
 }
 
 Projectile.prototype.draw = function() {
+    const now = performance.now();
+
+    if(this.mask === PROJECTILE_MASK_PLAYER) {
+        var color = COLOR_PROJECTILE_PLAYER;
+    }
+    else {
+        var color = COLOR_PROJECTILE_ENEMY;
+    }
+
     if(BULLET_ANIMS) {
-        if(performance.now() - this.spawnTime < MUZZLE_FLASH_TIME) {
+        if(now - this.spawnTime < MUZZLE_FLASH_TIME) {
             gfx.fillStyle = COLOR_PROJECTILE_FLASH;
             gfx.fillCircle(this.x, this.y, this.radius * 2);
         }
         else {
-            if(this.mask === PROJECTILE_MASK_PLAYER) {
-                gfx.fillStyle = COLOR_PROJECTILE_PLAYER;
-            }
-            else {
-                gfx.fillStyle = COLOR_PROJECTILE_ENEMY;
-            }
+            gfx.fillStyle = color;
             const dir = Math.atan2(this.dy, this.dx);
             gfx.beginPath();
             gfx.ellipse(this.x, this.y, this.radius*2.5, this.radius, dir, 0, Math.TAU);
@@ -61,13 +68,17 @@ Projectile.prototype.draw = function() {
         }
     }
     else {
-        if(this.mask === PROJECTILE_MASK_PLAYER) {
-            gfx.fillStyle = COLOR_PROJECTILE_PLAYER;
-        }
-        else {
-            gfx.fillStyle = COLOR_PROJECTILE_ENEMY;
-        }
+        gfx.fillStyle = color;
         gfx.fillCircle(this.x, this.y, this.radius);
+    }
+
+    if(EXTRA_PARTICLES) {
+        if(now - this.lastTrailParticle >= PROJECTILE_TRAIL_COOLDOWN) {
+            const dir = Math.atan2(this.dy, this.dx) + Math.PI;
+            particleBurst(1, this.x, this.y, this.radius, 0, Math.TAU, 10, color);
+            this.lastTrailParticle = now +
+                randomRange(PROJECTILE_TRAIL_COOLDOWN/-2, PROJECTILE_TRAIL_COOLDOWN/2);
+        }
     }
 }
 

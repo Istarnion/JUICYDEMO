@@ -31,7 +31,7 @@ function particleBurst(count, x, y, radius, fromDirection, toDirection, force, c
             dx: Math.cos(dir) * force,
             dy: Math.sin(dir) * force,
             color: color,
-            ttl: 1
+            ttl: randomRange(0.5, 1.0)
         });
     }
 }
