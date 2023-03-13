@@ -17,7 +17,9 @@ var ENEMY_SPAWN_DELAY = 3;
 var ENEMY_SHOOT_COOLDOWN = 0.5;
 
 var SFX = false;
+var MUSIC = false;
 var HIT_PARTICLES = false;
+var EXTRA_PARTICLES = false;
 
 var DEATH_ANIMS = false;
 var BULLET_ANIMS = false;
@@ -129,7 +131,7 @@ function updateJuicyness() {
         SCREENSHAKE = false;
     }
 
-    if(juicelevel >= 9) {
+    if(juicelevel >= 8) {
         COLOR_BACKGROUND = "#1a2331";
         COLOR_WALLS = "#5f707f";
         COLOR_HP_BACKGROUND = "#000000";
@@ -170,6 +172,20 @@ function updateJuicyness() {
         COLOR_ENEMY_EYE = "black";
         COLOR_ENEMY_VIEWCONE = "rgba(255, 255, 255, 0.2)";
         COLOR_ENEMY_BLOOD = "white";
+    }
+
+    if(juicelevel >= 9) {
+        MUSIC = true;
+    }
+    else {
+        MUSIC = false;
+    }
+
+    if(juicelevel >= 10) {
+        EXTRA_PARTICLES = true;
+    }
+    else {
+        EXTRA_PARTICLES = false;
     }
 }
 
