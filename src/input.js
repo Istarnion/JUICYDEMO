@@ -19,8 +19,10 @@ const KEY_MORE_JUICE = 5;
 const KEY_LESS_JUICE = 6;
 const KEY_NO_JUICE = 7;
 const KEY_ALL_JUICE = 8;
+const KEY_PAUSE = 9;
 
 const keys = [
+    false,
     false,
     false,
     false,
@@ -72,6 +74,9 @@ function keyCodeToKey(code) {
     }
     else if(code === 74) { // J
         return KEY_ALL_JUICE;
+    }
+    else if(code === 80) { // P
+        return KEY_PAUSE;
     }
     else return -1;
 }

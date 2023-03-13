@@ -22,6 +22,8 @@ function gameInit() {
 }
 
 function resetGame() {
+    paused = false;
+
     player = new Player(WIDTH / 2, HEIGHT / 2);
     projectiles = [];
     enemies = [];
@@ -70,7 +72,12 @@ function gameUpdateAndRender() {
     if(keyJustPressed(KEY_RESET)) {
         resetGame();
     }
-    else if(keyJustPressed(KEY_LESS_JUICE)) {
+    else if(keyJustPressed(KEY_PAUSE)) {
+        paused = !paused;
+        accumulatedTime = 0;
+    }
+
+    if(keyJustPressed(KEY_LESS_JUICE)) {
         lessJuice();
     }
     else if(keyJustPressed(KEY_MORE_JUICE)) {
@@ -83,7 +90,7 @@ function gameUpdateAndRender() {
         maxJuice();
     }
 
-    while(accumulatedTime >= DELTA_TIME_MILLIS && player.health > 0) {
+    while(!paused && accumulatedTime >= DELTA_TIME_MILLIS && player.health > 0) {
         trauma -= TRAUMA_RESTORE_SPEED * DELTA_TIME_SECONDS;
         if(trauma < 0) {
             trauma = 0;
@@ -163,7 +170,7 @@ function gameUpdateAndRender() {
     }
 
 
-    if(SCREENSHAKE) {
+    if(SCREENSHAKE && !paused) {
         gfx.save();
         const offset = randomInsideUnitCircle();
         const hardness = trauma * SCREENSHAKE_HARDNESS;
@@ -260,8 +267,13 @@ function gameUpdateAndRender() {
         }
     }
 
-    if(SCREENSHAKE) {
+    if(SCREENSHAKE && !paused) {
         gfx.restore();
+    }
+
+    if(paused) {
+        gfx.fillStyle = "rgba(255, 255, 255, 0.2)";
+        gfx.fillRect(0, 0, WIDTH, HEIGHT);
     }
 
     endInputFrame();
