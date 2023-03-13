@@ -23,6 +23,7 @@ var EXTRA_PARTICLES = false;
 
 var DEATH_ANIMS = false;
 var BULLET_ANIMS = false;
+var RECOIL = false;
 
 var SCREENSHAKE = false;
 
@@ -122,10 +123,12 @@ function updateJuicyness() {
     if(juicelevel >= 6) {
         DEATH_ANIMS = true;
         BULLET_ANIMS = true;
+        RECOIL = true;
     }
     else {
         DEATH_ANIMS = false;
         BULLET_ANIMS = false;
+        RECOIL = false;
     }
 
     if(juicelevel >= 7) {

@@ -19,6 +19,7 @@ function Player(x, y) {
     this.cooldown = 0;
     this.lastHitTime = 0;
     this.lastTrailParticle = 0;
+    this.recoil = 0;
 
     this.orbs = [ 0, 0, 0, 0 ];
 }
@@ -58,6 +59,7 @@ Player.prototype.update = function(dt) {
         // Call here to only play once no matter how many projectiles we fire
         playSfx(PLAYER_SHOOT_SFX);
         trauma += 0.075;
+        this.recoil = 1;
 
         this.cooldown = PLAYER_SHOOT_COOLDOWN;
     }
@@ -73,6 +75,19 @@ Player.prototype.update = function(dt) {
     this.orbs[2] = this.x + forwardY * ORB_SPACING;
     this.orbs[3] = this.y + -forwardX * ORB_SPACING;
 
+    // Recoil
+    if(RECOIL) {
+        const orbCount = this.orbs.length / 2;
+        for(var i=0; i<orbCount; ++i) {
+            const r = lerp(0, 15, tween(this.recoil));
+            this.orbs[2*i+0] -= forwardX * r;
+            this.orbs[2*i+1] -= forwardY * r;
+        }
+
+        this.recoil -= dt * 5;
+        if(this.recoil < 0) this.recoil = 0;
+    }
+
     if(this.cooldown > 0) {
         this.cooldown -= dt;
     }
@@ -85,7 +100,6 @@ Player.prototype.update = function(dt) {
 
             if(PLAYER_COOL_GUN) {
                 const orbRadius = PLAYER_RADIUS * 0.3;
-                const orbCount = this.orbs.length / 2;
                 for(var i=0; i<orbCount; ++i) {
                     particleBurst(1, this.orbs[2*i], this.orbs[2*i+1], orbRadius,
                                   -this.direction, -this.direction, 10, COLOR_PLAYER);
