@@ -71,3 +71,20 @@ Projectile.prototype.draw = function() {
     }
 }
 
+Projectile.prototype.drawShadow = function() {
+    gfx.fillStyle = "rgba(255, 255, 255, 0.2)"
+    if(BULLET_ANIMS) {
+        if(performance.now() - this.spawnTime < MUZZLE_FLASH_TIME) {
+            gfx.fillCircle(this.x, this.y, this.radius * 2 + SHADOW);
+        }
+        else {
+            const dir = Math.atan2(this.dy, this.dx);
+            gfx.beginPath();
+            gfx.ellipse(this.x, this.y+SHADOW, this.radius*2.5, this.radius, dir, 0, Math.TAU);
+            gfx.fill();
+        }
+    }
+    else {
+        gfx.fillCircle(this.x, this.y+SHADOW, this.radius);
+    }
+}

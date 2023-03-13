@@ -45,6 +45,7 @@ var COLOR_ENEMY;
 var COLOR_ENEMY_EYE;
 var COLOR_ENEMY_VIEWCONE;
 var COLOR_ENEMY_BLOOD;
+var SHADOWS = false;
 
 juicelevel = 0;
 const MAX_JUICE_LEVEL = 12;
@@ -132,6 +133,7 @@ function updateJuicyness() {
     }
 
     if(juicelevel >= 8) {
+        SHADOWS = true;
         COLOR_BACKGROUND = "#1a2331";
         COLOR_WALLS = "#5f707f";
         COLOR_HP_BACKGROUND = "#000000";
@@ -153,6 +155,7 @@ function updateJuicyness() {
         COLOR_ENEMY_BLOOD = "#e73e46";
     }
     else {
+        SHADOWS = false;
         COLOR_BACKGROUND = "black";
         COLOR_WALLS = "white";
         COLOR_HP_BACKGROUND = "black";

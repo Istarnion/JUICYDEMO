@@ -126,3 +126,16 @@ Player.prototype.draw = function(dt) {
                    eyeRadius);
 }
 
+Player.prototype.drawShadow = function() {
+    gfx.fillStyle = "rgba(0, 0, 0, 0.2)";
+    gfx.fillCircle(this.x, this.y+SHADOW, PLAYER_RADIUS);
+
+    if(PLAYER_COOL_GUN) {
+        const orbRadius = PLAYER_RADIUS * 0.3;
+        const orbCount = this.orbs.length / 2;
+        for(var i=0; i<orbCount; ++i) {
+            gfx.fillCircle(this.orbs[2*i], this.orbs[2*i+1]+SHADOW, orbRadius);
+        }
+    }
+}
+

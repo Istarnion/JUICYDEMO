@@ -142,6 +142,20 @@ function gameUpdateAndRender() {
         gfx.translate(offset[0] * hardness, offset[1] * hardness);
     }
 
+    if(SHADOWS) {
+        player.drawShadow();
+
+        for(var i=0; i<enemies.length; ++i) {
+            enemies[i].drawShadow();
+        }
+
+        gfx.fillStyle = "rgba(0, 0, 0, 0.2)";
+        for(var i=0; i<walls.length; ++i) {
+            const w = walls[i];
+            gfx.fillRect(w[0], w[1]+SHADOW, w[2], w[3]);
+        }
+    }
+
     gfx.fillStyle = COLOR_WALLS;
     for(var i=0; i<walls.length; ++i) {
         const w = walls[i];

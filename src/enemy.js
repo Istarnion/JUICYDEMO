@@ -176,3 +176,8 @@ Enemy.prototype.draw = function() {
                    eyeRadius);
 }
 
+Enemy.prototype.drawShadow = function() {
+    gfx.fillStyle = "rgba(0, 0, 0, 0.2)";
+    gfx.fillCircle(this.x, this.y+SHADOW, ENEMY_RADIUS);
+}
+

@@ -21,6 +21,7 @@ const MUZZLE_FLASH_TIME = 20; // milliseconds
 const DEATH_EFFECT_DURATION = 1;
 const TRAUMA_RESTORE_SPEED = 2; // How fast trauma goes back down to zero
 const SCREENSHAKE_HARDNESS = 10;
+const SHADOW = 2;
 
 const PLAYER_HEALTH = 100;
 const PLAYER_RADIUS = 12;
