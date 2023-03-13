@@ -84,7 +84,9 @@ Enemy.prototype.update = function(dt) {
                     this.shotsFired++;
                 }
                 else {
-                    this.setState(ENEMY_STATE_WALK);
+                    this.setState(ENEMY_STATE_LOOK);
+                    this.lookStartDirection = this.direction;
+                    this.lookProgress = 0;
                 }
             }
 
