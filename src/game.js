@@ -9,6 +9,14 @@
 function gameInit() {
     gfxInit(WIDTH, HEIGHT);
 
+    bgm = new Howl({
+        src: [
+            "res/DOOM/Doom(mp3^320).mp3",
+            "res/DOOM/Doom(wave).wav"
+        ],
+        loop: true
+    });
+
     resetGame();
     gameUpdateAndRender();
 }
@@ -31,6 +39,11 @@ function resetGame() {
     effects = [];
     trauma = 0;
     score = 0;
+
+    if(MUSIC) {
+        bgm.volume(MUSIC_VOLUME);
+        bgm.play();
+    }
 
     updateJuicyness();
 

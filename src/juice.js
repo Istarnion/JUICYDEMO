@@ -179,9 +179,14 @@ function updateJuicyness() {
 
     if(juicelevel >= 9) {
         MUSIC = true;
+        if(!bgm.playing()) {
+            bgm.volume(MUSIC_VOLUME);
+            bgm.play();
+        }
     }
     else {
         MUSIC = false;
+        bgm.stop();
     }
 
     if(juicelevel >= 10) {

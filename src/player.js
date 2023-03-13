@@ -93,6 +93,14 @@ Player.prototype.hit = function() {
 
         playSfx(PLAYER_DEATH_SFX);
         this.deathTimestamp = performance.now();
+
+        // NOTE: Move this!
+        // Having this here is ugly, but it is the only place we have
+        // code run just as the player dies, and I couldn't be bothered
+        // to set something up elsewhere.
+        if(MUSIC) {
+            bgm.fade(MUSIC_VOLUME, 0, 1.5);
+        }
     }
 }
 

@@ -53,3 +53,6 @@ By Jack Menhorn, CC-BY (https://opengameart.org/content/fps-placeholder-sounds)
 By Luann Wepener, CC-BY-NC (https://freesound.org/people/LuannWepener/sounds/326116/)
 - res/click.wav
 
+By GTDStudio aka Palrom, OGL-BY 3.0 (https://opengameart.org/content/triple-kill-multiple-tracks)
+- DOOM (soundtrack, mp3 and wav)
+
