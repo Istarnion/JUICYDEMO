@@ -80,7 +80,18 @@ Player.prototype.update = function(dt) {
     if(EXTRA_PARTICLES) {
         const now = performance.now();
         if(speed > 0 && now - this.lastTrailParticle >= WALK_TRAIL_COOLDOWN) {
-            particleBurst(1, this.x, this.y, PLAYER_RADIUS, -this.direction, -this.direction, 10, COLOR_PLAYER);
+            particleBurst(1, this.x, this.y, PLAYER_RADIUS,
+                          -this.direction, -this.direction, 10, COLOR_PLAYER);
+
+            if(PLAYER_COOL_GUN) {
+                const orbRadius = PLAYER_RADIUS * 0.3;
+                const orbCount = this.orbs.length / 2;
+                for(var i=0; i<orbCount; ++i) {
+                    particleBurst(1, this.orbs[2*i], this.orbs[2*i+1], orbRadius,
+                                  -this.direction, -this.direction, 10, COLOR_PLAYER);
+                }
+            }
+
             this.lastTrailParticle = now +
                 randomRange(WALK_TRAIL_COOLDOWN/-2, WALK_TRAIL_COOLDOWN/2);
         }
