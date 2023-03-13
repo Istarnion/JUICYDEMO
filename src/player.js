@@ -17,6 +17,7 @@ function Player(x, y) {
     this.deathTimestamp = 0;
     this.direction = 0;
     this.cooldown = 0;
+    this.lastHitTime = 0;
 
     this.orbs = [ 0, 0, 0, 0 ];
 }
@@ -83,6 +84,7 @@ Player.prototype.hit = function() {
     }
 
     trauma += 0.5;
+    this.lastHitTime = performance.now();
 
     if(this.health <= 0) {
         if(DEATH_ANIMS) {
@@ -95,7 +97,15 @@ Player.prototype.hit = function() {
 }
 
 Player.prototype.draw = function(dt) {
-    gfx.fillStyle = COLOR_PLAYER;
+    if(performance.now() - this.lastHitTime > 33)
+    {
+        gfx.fillStyle = COLOR_PLAYER;
+    }
+    else
+    {
+        gfx.fillStyle = "white";
+    }
+
     gfx.fillCircle(this.x, this.y, PLAYER_RADIUS);
 
     if(PLAYER_COOL_GUN) {

@@ -27,6 +27,7 @@ function Enemy(x, y, dstX, dstY) {
     this.lookProgress = 0;
     this.cooldown = 0;
     this.shotsFired = 0;
+    this.lastHitTime = 0;
 
     this.active = true;
 }
@@ -116,6 +117,7 @@ Enemy.prototype.hit = function() {
         particleBurst(5, this.x, this.y, ENEMY_RADIUS, 0, Math.TAU, 100, COLOR_ENEMY_BLOOD);
     }
 
+    this.lastHitTime = performance.now();
     trauma += 0.2;
 
     if(this.health <= 0) {
@@ -152,7 +154,15 @@ Enemy.prototype.draw = function() {
         gfx.fill();
     }
 
-    gfx.fillStyle = COLOR_ENEMY;
+    if(performance.now() - this.lastHitTime > 33)
+    {
+        gfx.fillStyle = COLOR_ENEMY;
+    }
+    else
+    {
+        gfx.fillStyle = "white";
+    }
+
     gfx.fillCircle(this.x, this.y, ENEMY_RADIUS);
 
     const forwardX = Math.cos(this.direction);
