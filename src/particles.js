@@ -21,6 +21,10 @@ function spawnParticle(p) {
 }
 
 function particleBurst(count, x, y, radius, fromDirection, toDirection, force, color) {
+    if(CRAZY) {
+        count *= 2;
+    }
+
     for(var i=0; i<count; ++i) {
         const loc = randomInsideUnitCircle();
         const dir = randomRange(fromDirection, toDirection);

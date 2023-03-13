@@ -48,13 +48,14 @@ var COLOR_ENEMY_BLOOD;
 var SHADOWS = false;
 
 var TWEENING = false;
+var CRAZY = false;
 
 juicelevel = 0;
 const MAX_JUICE_LEVEL = 12;
 
 function moreJuice() {
     juicelevel++;
-    if(juicelevel >= MAX_JUICE_LEVEL) juicelevel = MAX_JUICE_LEVEL-1;
+    if(juicelevel > MAX_JUICE_LEVEL) juicelevel = MAX_JUICE_LEVEL;
     updateJuicyness();
 }
 
@@ -65,7 +66,7 @@ function lessJuice() {
 }
 
 function maxJuice() {
-    juicelevel = MAX_JUICE_LEVEL-1;
+    juicelevel = MAX_JUICE_LEVEL;
     updateJuicyness();
 }
 
@@ -203,6 +204,13 @@ function updateJuicyness() {
     }
     else {
         TWEENING = false;
+    }
+
+    if(juicelevel >= 12) {
+        CRAZY = true;
+    }
+    else {
+        CRAZY = false;
     }
 }
 

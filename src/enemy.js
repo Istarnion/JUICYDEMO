@@ -145,6 +145,7 @@ Enemy.prototype.hit = function() {
         playSfx(ENEMY_DEATH_SFX);
         this.active = false;
         scorePoint();
+        lastDeath = performance.now();
     }
 }
 

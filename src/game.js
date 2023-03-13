@@ -41,6 +41,7 @@ function resetGame() {
     score = 0;
     scoreAnim = 1;
     healthAnim = 0;
+    lastDeath = 0;
 
     if(MUSIC) {
         bgm.volume(MUSIC_VOLUME);
@@ -149,7 +150,18 @@ function gameUpdateAndRender() {
         accumulatedTime -= DELTA_TIME_MILLIS;
     }
 
-    gfx.clear(COLOR_BACKGROUND);
+    if(CRAZY) {
+        if(performance.now() - lastDeath < 33) {
+            gfx.clear("white");
+        }
+        else {
+            gfx.clear(COLOR_BACKGROUND);
+        }
+    }
+    else {
+        gfx.clear(COLOR_BACKGROUND);
+    }
+
 
     if(SCREENSHAKE) {
         gfx.save();

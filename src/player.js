@@ -108,6 +108,7 @@ Player.prototype.hit = function() {
 
         playSfx(PLAYER_DEATH_SFX);
         this.deathTimestamp = performance.now();
+        lastDeath = performance.now();
 
         // NOTE: Move this!
         // Having this here is ugly, but it is the only place we have
