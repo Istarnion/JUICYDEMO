@@ -74,10 +74,10 @@ Player.prototype.update = function(dt) {
     this.orbs[1] = this.y + forwardX * ORB_SPACING;
     this.orbs[2] = this.x + forwardY * ORB_SPACING;
     this.orbs[3] = this.y + -forwardX * ORB_SPACING;
+    const orbCount = this.orbs.length / 2;
 
     // Recoil
     if(RECOIL) {
-        const orbCount = this.orbs.length / 2;
         for(var i=0; i<orbCount; ++i) {
             const r = lerp(0, 15, tween(this.recoil));
             this.orbs[2*i+0] -= forwardX * r;

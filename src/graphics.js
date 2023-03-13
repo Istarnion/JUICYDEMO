@@ -83,3 +83,24 @@ gfx.fillCircle = function(x, y, radius) {
     this.fill();
 };
 
+gfx.drawCenteredRotatedRect = function(x, y, size, rotation) {
+    const corners = [
+        size/-2, size/-2,
+        size/2, size/-2,
+        size/2, size/2,
+        size/-2, size/2
+    ];
+
+    gfx.save();
+    gfx.translate(x, y);
+    gfx.rotate(rotation);
+    this.beginPath();
+    this.moveTo(corners[0], corners[1]);
+    this.lineTo(corners[2], corners[3]);
+    this.lineTo(corners[4], corners[5]);
+    this.lineTo(corners[6], corners[7]);
+    this.closePath();
+    this.stroke();
+    gfx.restore();
+};
+

@@ -21,6 +21,7 @@ var MUSIC = false;
 var HIT_PARTICLES = false;
 var EXTRA_PARTICLES = false;
 
+var CURSOR_ANIM = false;
 var DEATH_ANIMS = false;
 var BULLET_ANIMS = false;
 var RECOIL = false;
@@ -29,6 +30,8 @@ var SCREENSHAKE = false;
 
 var COLOR_BACKGROUND;
 var COLOR_WALLS;
+var COLOR_CURSOR1;
+var COLOR_CURSOR2;
 var COLOR_HP_BACKGROUND;
 var COLOR_HP_BORDER;
 var COLOR_HP_FILL;
@@ -121,11 +124,13 @@ function updateJuicyness() {
     }
 
     if(juicelevel >= 6) {
+        CURSOR_ANIM = true;
         DEATH_ANIMS = true;
         BULLET_ANIMS = true;
         RECOIL = true;
     }
     else {
+        CURSOR_ANIM = false;
         DEATH_ANIMS = false;
         BULLET_ANIMS = false;
         RECOIL = false;
@@ -142,6 +147,8 @@ function updateJuicyness() {
         SHADOWS = true;
         COLOR_BACKGROUND = "#1a2331";
         COLOR_WALLS = "#5f707f";
+        COLOR_CURSOR1 = "#ffffff";
+        COLOR_CURSOR2 = "#86fbee";
         COLOR_HP_BACKGROUND = "#000000";
         COLOR_HP_BORDER = "#86fbee";
         COLOR_HP_FILL = "#e94f49";
@@ -164,6 +171,8 @@ function updateJuicyness() {
         SHADOWS = false;
         COLOR_BACKGROUND = "black";
         COLOR_WALLS = "white";
+        COLOR_CURSOR1 = "white";
+        COLOR_CURSOR2 = "white";
         COLOR_HP_BACKGROUND = "black";
         COLOR_HP_BORDER = "white";
         COLOR_HP_FILL = "white";

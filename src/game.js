@@ -23,6 +23,7 @@ function gameInit() {
 
 function resetGame() {
     paused = false;
+    cursorRotation = 0;
 
     player = new Player(WIDTH / 2, HEIGHT / 2);
     projectiles = [];
@@ -270,6 +271,18 @@ function gameUpdateAndRender() {
     if(SCREENSHAKE && !paused) {
         gfx.restore();
     }
+
+    if(!paused && CURSOR_ANIM) {
+        cursorRotation += (delta / 1000);
+        if(cursorRotation >= Math.TAU) {
+            cursorRotation -= Math.TAU;
+        }
+    }
+
+    gfx.strokeStyle = COLOR_CURSOR1;
+    gfx.drawCenteredRotatedRect(mouseX, mouseY, 15, cursorRotation);
+    gfx.strokeStyle = COLOR_CURSOR2;
+    gfx.drawCenteredRotatedRect(mouseX, mouseY, 15, -cursorRotation+Math.PI/2);
 
     if(paused) {
         gfx.fillStyle = "rgba(255, 255, 255, 0.2)";
