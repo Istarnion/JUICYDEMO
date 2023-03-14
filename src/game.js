@@ -11,8 +11,8 @@ function gameInit() {
 
     bgm = new Howl({
         src: [
-            "res/DOOM/Doom(mp3^320).mp3",
-            "res/DOOM/Doom(wave).wav"
+            "res/DOOM/Doom.mp3",
+            "res/DOOM/Doom.wav"
         ],
         loop: true
     });
