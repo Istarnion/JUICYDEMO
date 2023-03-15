@@ -73,9 +73,14 @@ function gameUpdateAndRender() {
     if(keyJustPressed(KEY_RESET)) {
         resetGame();
     }
-    else if(keyJustPressed(KEY_PAUSE)) {
+
+    if(keyJustPressed(KEY_PAUSE)) {
         paused = !paused;
         accumulatedTime = 0;
+    }
+
+    if(keyJustPressed(KEY_FULLSCREEN)) {
+        canvas.requestFullscreen();
     }
 
     if(keyJustPressed(KEY_LESS_JUICE)) {

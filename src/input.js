@@ -20,8 +20,10 @@ const KEY_LESS_JUICE = 6;
 const KEY_NO_JUICE = 7;
 const KEY_ALL_JUICE = 8;
 const KEY_PAUSE = 9;
+const KEY_FULLSCREEN = 10;
 
 const keys = [
+    false,
     false,
     false,
     false,
@@ -78,6 +80,9 @@ function keyCodeToKey(code) {
     else if(code === 80) { // P
         return KEY_PAUSE;
     }
+    else if(code === 70) { // P
+        return KEY_FULLSCREEN;
+    }
     else return -1;
 }
 
@@ -96,6 +101,7 @@ window.addEventListener("keyup", function(e) {
     if(key >= 0) {
         keys[key] = false;
     }
+
     return false;
 });
 

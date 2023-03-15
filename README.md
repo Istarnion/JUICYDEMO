@@ -19,6 +19,7 @@ This game was made for use during presentations, so there is no menu or instruct
 - Press L to get less juice
 - 0 to remove all juice
 - J to add all juice
+- F to go fullscreen
 
 
 ## Levels of juice
