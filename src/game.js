@@ -70,10 +70,6 @@ function gameUpdateAndRender() {
         accumulatedTime = DELTA_TIME_MILLIS;
     }
 
-    if(keyJustPressed(KEY_RESET)) {
-        resetGame();
-    }
-
     if(keyJustPressed(KEY_PAUSE)) {
         paused = !paused;
         accumulatedTime = 0;
