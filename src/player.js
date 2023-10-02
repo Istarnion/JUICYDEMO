@@ -68,6 +68,12 @@ Player.prototype.update = function(dt) {
     this.x = collision.x;
     this.y = collision.y;
 
+    // Constrain player to game bounds
+    if(this.x < 0) this.x = 0;
+    if(this.x >= WIDTH) this.x = WIDTH-1;
+    if(this.y < 0) this.y = 0;
+    if(this.y >= HEIGHT) this.y = HEIGHT-1;
+
     const forwardX = Math.cos(this.direction);
     const forwardY = Math.sin(this.direction);
     this.orbs[0] = this.x + -forwardY * ORB_SPACING;
